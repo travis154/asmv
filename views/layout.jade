@@ -1,0 +1,56 @@
+doctype html
+html
+	head
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+		title Maldivian Insider
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700', rel='stylesheet', type='text/css')
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/app.css')
+		script(src='/js/jquery-2.0.3.min.js')
+		script(src='/js/html5Preloader.js')
+		script(src='/javascripts/davis.min.js')
+		script(src='/js/bootstrap.min.js')
+		script(src='/js/parsley.js')
+		script(src='/templates.js')
+		script(src='/js/pre.js')
+		style .carousel-inner>.item>img, .carousel-inner>.item>a>img{width:100%}
+	body(data-spy="scroll", data-target=".navbar-app")
+		div.modal.fade(tabindex="-1", role="dialog", aria-hidden="true", style='z-index:9999')#modal-profile
+			div.modal-dialog.modal-sm
+				div.modal-content#modal-content
+		section.container
+			block content
+			section.center
+				section.btn-group.people-selection(data-toggle='buttons')
+					label.btn.btn-link
+						div.arrow-down
+						input(type='radio', name='option')
+						| Ministers
+					label.btn.btn-link
+						div.arrow-down
+						input(type='radio', name='option')
+						| Members of Parliament
+					label.btn.btn-link
+						div.arrow-down
+						input(type='radio', name='option')
+						| Political figures
+			section.row
+				-each person in people
+					section.col-md-3.person-card(data-d=encodeURIComponent(JSON.stringify(person)))
+						section(style='background:url('+person.profile_banner_url+'/ipad);').person-card-cover
+						section.row
+							section.col-md-9
+								h2=person.name
+								h6
+									strong=person.designation
+							section.col-md-2
+								img(src=person.profile_image_url)
+			hr
+			section
+				h2 news
+			footer.row
+				section.col-md-3
+					small &copy; 2014 Maldivian Insider
+				section.col-md-3.pull-right.align-right
+					small
+						a(href='') Site Map
