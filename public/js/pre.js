@@ -13,11 +13,11 @@ $(function(){
 		console.log(self);
 		self.addClass("active");
 	});
-// $(".person-card").popover({
-// 			placement:'top',
-// 			html:true,
-// 			content:'<h6>traveling to Male, Maldives from Emirates Business Lounge http://fb.me/2ora8UYgC </h6>'
-// 		})
+$(".person-new-card").popover({
+			placement:'bottom',
+			html:true,
+			content:'<h6>traveling to Male, Maldives from Emirates Business Lounge http://fb.me/2ora8UYgC </h6>'
+		})
 	$("body").on('click', '.person-card', function(){
 		var data = $(this).attr('data-d');
 		$('#modal-content').html(jade.render('profile'));

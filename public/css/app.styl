@@ -203,10 +203,11 @@ hr
 		.person-card-cover
 			-webkit-filter: grayscale(0);
 .person-new-card
+	cursor pointer
 	h5
 		color #737373
 		margin: 0
-		padding: 6px 0px;
+		padding: 6px 0px 0px
 		strong
 			text-transform: uppercase;
 	h6
@@ -216,9 +217,9 @@ hr
 	.twitter-name
 		strong
 			color #c22273
-			font-size: 15px;
+			font-size: 13px;
 			font-weight: 300
-	height: 85px;
+	height: 78px;
 	background #f0f0f0
 	width: 24%;
 	margin: 0 0.5% 1%;
@@ -227,3 +228,14 @@ hr
 		width: 79%;
 	.col-md-2
 		padding 0
+	&:hover
+		background-color #ef2c8d
+		*
+			color white !important
+.popover
+	border-radius 0
+	margin-top: -1px !important;
+	max-width: 280px;
+.popover.bottom
+	.arrow
+		left: 10%;
