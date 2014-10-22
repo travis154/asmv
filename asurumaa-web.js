@@ -248,6 +248,7 @@ app.get('/', function(req, res){
 		},function(err, page){
 			page.pics = PICS;
 			page.people = PPL;
+			page.news = NEWS;
 			res.render('index',page);
 		});
 	}
@@ -260,6 +261,7 @@ http.createServer(app).listen(app.get('port'), function(){
 //#e23636
 var PICS = [];
 var PPL = [];
+var NEWS = [];
 async.forever(function(next){
 	async.waterfall([
 		function getAllPeople(fn){
@@ -301,7 +303,7 @@ async.forever(function(next){
 async.forever(function(next){
 	async.waterfall([
 		function getData(fn){
-			request('https://graph.facebook.com/v2.1/263037627237512/posts?fields=likes.limit(1).summary(true),message,object_id,shares,picture&access_token=312876022197325|gDpu22u-NcP2jLEdDxEp61OteFA&limit=250', fn);
+			request('https://graph.facebook.com/v2.1/263037627237512/posts?fields=likes.limit(1).summary(true),message,object_id,shares,picture&access_token=312876022197325|gDpu22u-NcP2jLEdDxEp61OteFA&limit=50', fn);
 		},
 		function parseData(raw,body,fn){
 			try{
@@ -357,6 +359,57 @@ async.forever(function(next){
 			console.log(err);
 		}
 		PICS = pics;
+		setTimeout(function(){
+			next();
+		}, 1000 * 60 * 3);
+	});
+},function(err){});
+
+async.forever(function(next){
+	async.waterfall([
+		function getData(fn){
+			request('https://graph.facebook.com/v2.1/ninmaifin/posts?fields=link,likes.limit(1).summary(true),message,object_id,shares,picture&access_token=312876022197325|gDpu22u-NcP2jLEdDxEp61OteFA&limit=50', fn);
+		},
+		function parseData(raw,body,fn){
+			try{
+				var data = JSON.parse(body);
+				if(data.error){
+					return fn(data.error);
+				}
+				var posts = data.data;
+				fn(null, posts);
+			}catch(e){
+				if(e){
+					fn(e);
+				}
+			}
+		},
+		function filterPosts(posts, fn){
+			var c = _.reduce(posts, function(count, p){
+				if(!p.likes){
+					return count;
+				} 
+				return count + p.likes.summary.total_count;
+			}, 0);
+			console.log(c);
+			var filtered = _.filter(posts, function(post){
+				if(!post || !post.message){
+					return false;
+				}
+				return post.message.indexOf('#amv') != -1;
+			});
+			filtered = filtered.map(function(f){
+				f.message = f.message.split("\n").shift();
+				return f;
+			})
+			fn(null, filtered)
+		}
+	], function(err, news){
+		if(err){
+			console.log(err);
+		}
+		NEWS = news;
+		console.log(news);
 		setTimeout(function(){
 			next();
 		}, 1000 * 60 * 3);

@@ -18,8 +18,8 @@ html
 		div.modal.fade(tabindex="-1", role="dialog", aria-hidden="true", style='z-index:9999')#modal-profile
 			div.modal-dialog.modal-sm
 				div.modal-content#modal-content
+		block content
 		section.container
-			block content
 			section.center
 				section.btn-group.people-selection(data-toggle='buttons')
 					label.btn.btn-link
@@ -46,8 +46,15 @@ html
 							section.col-md-2
 								img(src=person.profile_image_url)
 			hr
-			section
-				h2 news
+			h2 news
+			section.row
+				-each article in news
+					a(href=article.link, ).col-md-4
+						section.row
+							section.col-md-5
+								img(src=article.picture).img-responsive
+							section.col-md-7(style='padding-left:0;')
+								h4(style='margin-top: 0;')=article.message
 			footer.row
 				section.col-md-3
 					small &copy; 2014 Maldivian Insider
