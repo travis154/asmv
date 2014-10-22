@@ -36,16 +36,27 @@ html
 						| Political figures
 			section.row
 				-each person in people
-					section.col-md-3.person-card(data-d=encodeURIComponent(JSON.stringify(person)))
-						//section(style='background:url('+person.profile_banner_url+'/ipad);').person-card-cover
-						section.person-card-cover
+					section.col-md-3.person-new-card
+						h6=person.designation
 						section.row
 							section.col-md-9
-								h2=person.name
-								h6
-									strong=person.designation
+								h5
+									strong=person.name
+								section.twitter-name
+									strong @#{person.twitter}
 							section.col-md-2
 								img(src=person.profile_image_url)
+					//				
+						section.col-md-3.person-card(data-d=encodeURIComponent(JSON.stringify(person)))
+							section(style='background:url('+person.profile_banner_url+'/ipad);').person-card-cover
+							section.person-card-cover
+							section.row
+								section.col-md-9
+									h2=person.name
+									h6
+										strong=person.designation
+								section.col-md-2
+									img(src=person.profile_image_url)
 			hr
 			h2 news
 			section.row
