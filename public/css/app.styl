@@ -202,37 +202,6 @@ hr
 			//text-shadow 1px 1px 1px #000, 0px 0px 17px #fff, 0px 0px 17px #fff, 0px 0px 17px #555
 		.person-card-cover
 			-webkit-filter: grayscale(0);
-.person-new-card
-	cursor pointer
-	img
-		width 48px
-	h5
-		color #737373
-		margin: 0
-		padding: 6px 0px 0px
-	h6
-		margin: 0
-		color #737373
-		padding: 5px 0 0;
-		text-transform: uppercase;
-	.twitter-name
-		strong
-			color #c22273
-			font-size: 13px;
-			font-weight: 300
-	height: 78px;
-	background #f0f0f0
-	width: 24%;
-	margin: 0 0.5% 1%;
-	.col-md-9
-		padding 0px 8px 0px 16px
-		width: 79%;
-	.col-md-2
-		padding 0
-	&:hover
-		background-color #ef2c8d
-		*
-			color white !important
 .popover
 	border-radius 0
 	margin-top: -1px !important;
@@ -270,3 +239,63 @@ hr
 			font-size: 38px;
 .popover-content
 	padding 0
+
+.carousel-pic
+	height 584px
+.person-new-card
+	cursor pointer
+	img
+		width 48px
+	h5
+		color #737373
+		margin: 0
+		padding: 6px 0px 0px
+	h6
+		margin: 0
+		color #737373
+		padding: 5px 0 0;
+		text-transform: uppercase;
+	.twitter-name
+		strong
+			color #c22273
+			font-size: 13px;
+			font-weight: 300
+	height: 78px;
+	background #f0f0f0
+	width: 24%;
+	margin: 0 0.5% 1%;
+	.col-md-9
+		padding 0px 8px 0px 16px
+		width: 79%;
+	.col-md-2
+		padding 0
+	&:hover
+		background-color #ef2c8d
+		*
+			color white !important
+@media only screen and (min-width : 320px)
+	.carousel-pic
+		height 300px
+	.person-new-card
+		*
+			text-align center
+		height 149px
+		width 100%
+		.col-md-2
+			//float: right;
+		img
+			border-radius: 50%;
+			width 64px
+@media only screen and (min-width : 768px)
+	.carousel-pic
+		height 584px
+	.person-new-card
+		*
+			text-align left
+		height 78px
+		width 24%
+		.col-md-2
+			//float: inherit;
+		img
+			width 48px
+			border-radius: 0;

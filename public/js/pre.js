@@ -24,24 +24,21 @@ $(".person-new-card").popover({
 		$('#modal-content').html(jade.render('profile'));
 		$('#modal-profile').modal('show');
 	})*/
-	$("body").on('click', ".person-new-card", function(){
-			var el = $(this);
-		setTimeout(function(){
-			var data = el.attr('data-d');
-			data = JSON.parse(decodeURIComponent(data));
-			if(!data.twitter || data.twitter == ''){
-				return;
-			}
-			var html = jade.render('profile', {profile:data});
-			el.popover({
-				placement:'bottom',
-				html:true,
-				content:html
-			})
-		},0);
-	});
+
 	var types = {};
 	$('.person-new-card').each(function(){
+		var el = $(this);
+		var data = el.attr('data-d');
+		data = JSON.parse(decodeURIComponent(data));
+		if(!data.twitter || data.twitter == ''){
+			return;
+		}
+		var html = jade.render('profile', {profile:data});
+		el.popover({
+			placement:'bottom',
+			html:true,
+			content:html
+		});		
 		var t = $(this).attr('data-type');
 		if(!t || t == ""){
 			return;
