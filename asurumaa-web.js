@@ -268,6 +268,9 @@ app.get('/', function(req, res){
 		});
 	}
 });
+app.get('/launch', function(req, res){
+	res.render('launch');
+});
 
 
 http.createServer(app).listen(app.get('port'), function(){
