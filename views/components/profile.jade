@@ -1,6 +1,7 @@
 h4.quote
+	-var text = profile.status ? profile.status.text : "";
 	span &ldquo; 
-	| #{profile.status.text}
+	| #{text}
 	span &rdquo;
 -if(profile.twitter != undefined && profile.twitter != undefined)
 	section.profile-bar
