@@ -22,22 +22,11 @@ html
 		block content
 		section.container
 			section.center
-				section.btn-group.people-selection(data-toggle='buttons')
-					label.btn.btn-link
-						div.arrow-down
-						input(type='radio', name='option')
-						| Ministers
-					label.btn.btn-link
-						div.arrow-down
-						input(type='radio', name='option')
-						| Members of Parliament
-					label.btn.btn-link
-						div.arrow-down
-						input(type='radio', name='option')
-						| Political figures
+				section.btn-group.people-selection(data-toggle='buttons')#people-selection
 			section.row
+				br
 				-each person in people
-					section.col-md-3.person-new-card
+					section.col-md-3.person-new-card(data-type=person.type.name, data-d=encodeURIComponent(JSON.stringify(person)))
 						h6=person.designation
 						section.row
 							section.col-md-9
@@ -74,7 +63,7 @@ html
 								h4(style='margin-top: 0;')=article.message
 			footer.row
 				section.col-md-3
-					small &copy; 2014 Maldivian Insider
+					small &copy; 2014 Asurumaa
 				section.col-md-3.pull-right.align-right
 					small
 						a(href='') Site Map

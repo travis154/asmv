@@ -13,6 +13,7 @@ $(function(){
 		console.log(self);
 		self.addClass("active");
 	});
+/*
 $(".person-new-card").popover({
 			placement:'bottom',
 			html:true,
@@ -22,5 +23,36 @@ $(".person-new-card").popover({
 		var data = $(this).attr('data-d');
 		$('#modal-content').html(jade.render('profile'));
 		$('#modal-profile').modal('show');
+	})*/
+	$("body").on('click', ".person-new-card", function(){
+			var el = $(this);
+		setTimeout(function(){
+			var data = el.attr('data-d');
+			data = JSON.parse(decodeURIComponent(data));
+			if(!data.twitter || data.twitter == ''){
+				return;
+			}
+			var html = jade.render('profile', {profile:data});
+			el.popover({
+				placement:'bottom',
+				html:true,
+				content:html
+			})
+		},0);
+	});
+	var types = {};
+	$('.person-new-card').each(function(){
+		var t = $(this).attr('data-type');
+		types[t] = 1;
+	});
+	for(var type in types){
+		$("#people-selection").append('<label class="btn btn-link"><div class="arrow-down"></div><input type="radio" name="option">'+type+'</label>')
+	}
+	$("body").on('click', '#people-selection label', function(){
+		var type = $(this).text();
+		$('.person-new-card[data-type!="'+ type +'"]').hide();
 	})
 });
+
+
+

@@ -1,7 +1,10 @@
-div.modal-header
-	button(type='button', data-dismiss='modal').close
-		span(aria-hidden='true') &times;
-		span.sr-only close
-	h4.modal-title Alert
-div.modal-body
-	h5#error-message
+h4.quote
+	span &ldquo; 
+	| #{profile.status.text}
+	span &rdquo;
+-if(profile.twitter != undefined && profile.twitter != undefined)
+	section.profile-bar
+		-if(profile.twitter && profile.twitter != "")
+			a(href='http://twitter.com/' + profile.twitter, target='_blank').genericon.genericon-twitter
+		-if(profile.facebook && profile.facebook != "")
+			a(href='https://www.facebook.com/' + profile.facebook, target='_blank').genericon.genericon-facebook
