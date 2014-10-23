@@ -26,7 +26,7 @@ html
 			section.row
 				br
 				-each person in people
-					section.col-md-3.person-new-card(data-type=person.type.name, data-d=encodeURIComponent(JSON.stringify(person)))
+					section.col-md-3.person-new-card(data-type=person.type ? person.type.name : '', data-d=encodeURIComponent(JSON.stringify(person)))
 						h6=person.designation
 						section.row
 							section.col-md-9

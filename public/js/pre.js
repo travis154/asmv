@@ -43,6 +43,9 @@ $(".person-new-card").popover({
 	var types = {};
 	$('.person-new-card').each(function(){
 		var t = $(this).attr('data-type');
+		if(!t || t == ""){
+			return;
+		}
 		types[t] = 1;
 	});
 	for(var type in types){
@@ -50,6 +53,7 @@ $(".person-new-card").popover({
 	}
 	$("body").on('click', '#people-selection label', function(){
 		var type = $(this).text();
+		$('.person-new-card[data-type="'+ type +'"]').show();
 		$('.person-new-card[data-type!="'+ type +'"]').hide();
 	})
 });
