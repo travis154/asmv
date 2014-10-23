@@ -159,7 +159,22 @@ cms.add('list_ppl',{
 		constituency:{type:'string'},
 		twitter:{type:'string'},
 		fb:{type:'string'},
-		description:{type:'string', multi:'true'}
+		description:{type:'string', multi:'true'},
+		images:{
+			type:'image', 
+			maintain_ratio:true,   
+			manualcrop:true,
+			crop_width:100, 
+			crop_height:100,
+			sizes:[
+				{
+					prefix:"medium", 
+					width:100, 
+					height:100,
+				}
+			]
+
+		}		
 	}
 });
 
@@ -278,13 +293,15 @@ async.forever(function(next){
 				access_token_secret: arg.ats
 			});
 			var ppl = people.map(function(p){return p.twitter;}).join(',');
+			var rest = people.filter(function(p){return p.twitter == '' || !p.twitter;})
 			twit.lookupUser(ppl, function(err, list){
 				var list = _.map(list, function(p){
-					console.log(p)
 					var name = p.screen_name.toLowerCase();
 					var f = _.find(people, function(f){return f.twitter.toLowerCase() == name;});
 					return _.extend(p, f);
 				});
+				list = rest.concat(list)
+				console.log(list, 4);
 				fn(null, list);
 			});			
 		},
@@ -320,14 +337,12 @@ async.forever(function(next){
 			}
 		},
 		function filterPosts(posts, fn){
-			console.log(posts.length);
 			var c = _.reduce(posts, function(count, p){
 				if(!p.likes){
 					return count;
 				} 
 				return count + p.likes.summary.total_count;
 			}, 0);
-			console.log(c);
 			var filtered = _.filter(posts, function(post){
 				if(!post || !post.message){
 					return false;
@@ -339,7 +354,6 @@ async.forever(function(next){
 		function getPictures(posts, fn){
 			async.map(posts, function(post, done){
 				var url = 'https://graph.facebook.com/v2.1/'+post.object_id+'?&access_token=312876022197325|gDpu22u-NcP2jLEdDxEp61OteFA';
-				console.log(url);
 				request(url, function(err, raw, body){
 					var body = JSON.parse(body);
 					done(null, body);
@@ -391,7 +405,6 @@ async.forever(function(next){
 				} 
 				return count + p.likes.summary.total_count;
 			}, 0);
-			console.log(c);
 			var filtered = _.filter(posts, function(post){
 				if(!post || !post.message){
 					return false;
@@ -409,7 +422,6 @@ async.forever(function(next){
 			console.log(err);
 		}
 		NEWS = news;
-		console.log(news);
 		setTimeout(function(){
 			next();
 		}, 1000 * 60 * 3);

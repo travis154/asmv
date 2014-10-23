@@ -2,9 +2,10 @@ doctype html
 html
 	head
 		meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
-		title Maldivian Insider
+		title Asurumaa
 		link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700', rel='stylesheet', type='text/css')
 		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/genericons/genericons.css')
 		link(rel='stylesheet', href='/css/app.css')
 		script(src='/js/jquery-2.0.3.min.js')
 		script(src='/js/html5Preloader.js')
@@ -42,10 +43,14 @@ html
 							section.col-md-9
 								h5
 									strong=person.name
-								section.twitter-name
-									strong @#{person.twitter}
+								-if(person.twitter && person.twitter != '')
+									section.twitter-name
+										strong @#{person.twitter}
 							section.col-md-2
-								img(src=person.profile_image_url)
+								-if(person.twitter && person.twitter != '')
+									img(src=person.profile_image_url)
+								-else								
+									img(src='/files/medium' + person.images)
 					//				
 						section.col-md-3.person-card(data-d=encodeURIComponent(JSON.stringify(person)))
 							section(style='background:url('+person.profile_banner_url+'/ipad);').person-card-cover
