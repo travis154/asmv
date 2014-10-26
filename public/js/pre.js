@@ -54,7 +54,7 @@ $(".person-new-card").popover({
 		$('.person-new-card[data-type!="'+ type +'"]').hide();
 	})
 	$('body').on('click','.person-new-card', function(){ $('.person-new-card').popover('hide'); })
-	$('#people-selection:first').trigger('click');
+	$('#people-selection label:first').trigger('click');
 });
 
 
