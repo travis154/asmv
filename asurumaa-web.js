@@ -246,7 +246,7 @@ app.get('/', function(req, res){
 		},function(err, page){
 			page.pics = PICS;
 			page.people = PPL;
-			page.news = NEWS;
+			page.news = NEWS.slice(0,3);
 			res.render('index',page);
 		});
 	}
@@ -281,6 +281,7 @@ async.forever(function(next){
 			var ppl = people.map(function(p){return p.twitter;}).join(',');
 			var rest = people.filter(function(p){return p.twitter == '' || !p.twitter;})
 			twit.lookupUser(ppl, function(err, list){
+				console.log(err, list);
 				var list = _.map(list, function(p){
 					var name = p.screen_name.toLowerCase();
 					var f = _.find(people, function(f){return f.twitter.toLowerCase() == name;});
