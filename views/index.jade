@@ -7,10 +7,10 @@ block content
 				section.col-md-12
 					div#carousel.carousel.slide(data-ride="carousel")
 						div.carousel-inner#content
-							-each pic, k in pics
+							-each pic, k in gallery
 								div.item(class=(k==0 ? "active" : ""))
 									div.row
-										div.col-md-12.carousel-pic(style='padding-left:0;background:url('+pic.source+') no-repeat;background-size: cover;')
+										div.col-md-12.carousel-pic(style='padding-left:0;background:url(/files/'+pic.image+') no-repeat;background-size: cover;')
 						a.left.carousel-control(href="#carousel", data-slide="prev").hide
 							span.glyphicon.glyphicon-chevron-left
 						a.right.carousel-control(href="#carousel", data-slide="next").hide

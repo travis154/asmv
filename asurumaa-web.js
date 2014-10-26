@@ -98,12 +98,12 @@ cms.add('website_gallery',{
 	fields:{
 		name:{type:"string"},
 		description:{type:'string', multi:true},
-		images:{
-			type:'images', 
+		image:{
+			type:'image', 
 			maintain_ratio:false,   
 			manualcrop:false,
-			crop_width:680, 
-			crop_height:400, 
+			crop_width:900, 
+			crop_height:584/*, 
 			sizes:[
 				{
 					prefix:"medium", 
@@ -115,25 +115,8 @@ cms.add('website_gallery',{
 					width:370, 
 					height:370
 				}
-			]
+			]*/
 		}		
-	}
-});
-
-
-cms.add('downloads_forms',{
-	fields:{
-		name:{type:"string"},
-		string:{type:'file'},
-		description:{type:'string', multi:'true'}	
-	}
-});
-
-cms.add('downloads_announcements',{
-	fields:{
-		name:{type:"string"},
-		file:{type:'file'},
-		description:{type:'string', multi:'true'}	
 	}
 });
 
