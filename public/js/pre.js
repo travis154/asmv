@@ -53,6 +53,8 @@ $(".person-new-card").popover({
 		$('.person-new-card[data-type="'+ type +'"]').show();
 		$('.person-new-card[data-type!="'+ type +'"]').hide();
 	})
+	$('body').on('click','.person-new-card', function(){ $('.person-new-card').popover('hide'); })
+	$('#people-selection:first').trigger('click');
 });
 
 
