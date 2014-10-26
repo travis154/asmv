@@ -53,8 +53,8 @@ $(".person-new-card").popover({
 		$('.person-new-card[data-type="'+ type +'"]').show();
 		$('.person-new-card[data-type!="'+ type +'"]').hide();
 	})
-	$('body').on('click','.person-new-card', function(){ $('.person-new-card').popover('hide'); })
 	$('#people-selection label:first').trigger('click');
+	$('body').on('click','.person-new-card', function(){ $('.person-new-card').popover('hide'); $(this).popover('show'); })
 });
 
 
